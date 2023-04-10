@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Main from "./components/Main";
+import Quiz from "./components/Quiz";
+import { globalContext } from './components/GlobalContext';
+import {questions} from './components/QuestionsData'
+
+
+
 
 function App() {
+const [currentStage, setCurrentStage]= useState(0);
+const [startQuiz, setStartQuiz]= useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <globalContext.Provider value={{currentStage,setCurrentStage, questions, setStartQuiz,startQuiz}}>
+        <Routes>
+          <Route path='/' element={<Main/>}/>;
+          <Route path='/quiz' element={<Quiz/>}/>;
+        </Routes>
+    </globalContext.Provider>
+    </BrowserRouter>
   );
 }
 
