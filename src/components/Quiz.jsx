@@ -22,12 +22,16 @@ const Quiz = () => {
        
     }
 
+    const childrenStyles={
+        backgroundColor: "#1B1B1B",
+    }
+
   return (
             <Container>
                     
                 <Row className='p-3'>
-                            <Col className='p-1 bg-dark text-dark'xs={12}>
-                                <Card className='p-1'>
+                            <Col className='p-1 text-light'xs={12}>
+                                <Card className='p-1' style={childrenStyles}>
                                 <Card.Title>
                                 {questions[currentStage].question}
                                 </Card.Title>

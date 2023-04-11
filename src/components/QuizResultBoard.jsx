@@ -13,10 +13,14 @@ const QuizResultBoard = () => {
         setShowStartBtn(false);
         setTotalScore(0);
     }
+
+    const childrenStyles={
+        backgroundColor: "#1B1B1B",
+    }
   return (
-    <Row className='p-1'>
-        <Col className='p-1 bg-dark text-dark'xs={12}>
-            <Card className='p-1'>
+    <Row className='p-2 m-2'>
+        <Col className='p-1'xs={12}>
+            <Card className='p-1 text-light' style={childrenStyles}>
             <Card.Title>
                 {totalScore >= 50? <h4>Excellent Performance you scored above average, Bellow is Your Final Result: </h4>: <h4>Poor Performance you scored less than average, Bellow is Your Final Result: </h4> }
                 
@@ -28,7 +32,7 @@ const QuizResultBoard = () => {
             </Card.Body>
             </Card>
         </Col>
-        <Button onClick={handleReStartClick} className='btn btn-success border  border-2 '>Re-start</Button>
+        <Button onClick={handleReStartClick} className='btn btn-success '>Re-start</Button>
     </Row>
   )
 }
