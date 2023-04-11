@@ -4,29 +4,35 @@ import { globalContext } from './GlobalContext';
 
 
 const Quiz = () => {
-    const {questions, currentStage} = useContext(globalContext);
-    
+    const {questions, currentStage,totalScore, setTotalScore} = useContext(globalContext);
+
+    const handleClick=(e)=>{
+        if(e.target.value === questions[currentStage].Answer){
+            setTotalScore(totalScore + 10);
+        }
+    }
+
   return (
             <Container>
                     
                 <Row className='p-3'>
-                            <Col className='p-3 bg-dark text-dark'xs={12}>
-                                <Card className='p-3'>
+                            <Col className='p-1 bg-dark text-dark'xs={12}>
+                                <Card className='p-1'>
                                 <Card.Title>
                                 {questions[currentStage].question}
                                 </Card.Title>
                                 <Card.Body>
                                     <Card.Text>
-                                        {`1) ${questions[currentStage].optionA}`}
+                                        <input type="radio" value={"A"} onClick={handleClick} name='selected' /> {`1) ${questions[currentStage].optionA}`} 
                                     </Card.Text>
                                     <Card.Text>
-                                        {`2) ${questions[currentStage].optionB}`}
+                                        <input type="radio" value={"B"} onClick={handleClick} name='selected' /> {`2) ${questions[currentStage].optionB}`}
                                     </Card.Text>
                                     <Card.Text>
-                                        {`3) ${questions[currentStage].optionC}`}
+                                        <input type="radio" value={"C"} onClick={handleClick} name='selected' /> {`3) ${questions[currentStage].optionC}`}
                                     </Card.Text>
                                     <Card.Text>
-                                        {`4) ${questions[currentStage].optionD}`}
+                                        <input type="radio" value={"D"} onClick={handleClick} name='selected' /> {`4) ${questions[currentStage].optionD}`}
                                     </Card.Text>
                                 </Card.Body>
                                 </Card>
