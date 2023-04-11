@@ -1,15 +1,25 @@
 import React, { useContext } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row,Button } from 'react-bootstrap';
 import { globalContext } from './GlobalContext';
 
 
 const Quiz = () => {
-    const {questions, currentStage,totalScore, setTotalScore} = useContext(globalContext);
+    const {questions, currentStage,totalScore, setTotalScore,setCurrentStage,setStartQuiz,setEndQuiz} = useContext(globalContext);
 
     const handleClick=(e)=>{
         if(e.target.value === questions[currentStage].Answer){
             setTotalScore(totalScore + 10);
         }
+    }
+    const handleNextClick= ()=>{
+        if(currentStage < Number(questions.length-1) ){
+            setCurrentStage(currentStage + 1);
+        }else{
+            setEndQuiz(true);
+            setStartQuiz(false);
+            setCurrentStage(0);
+        }
+       
     }
 
   return (
@@ -35,8 +45,11 @@ const Quiz = () => {
                                         <input type="radio" value={"D"} onClick={handleClick} name='selected' /> {`4) ${questions[currentStage].optionD}`}
                                     </Card.Text>
                                 </Card.Body>
+                               
                                 </Card>
+                                
                             </Col>
+                            <Button onClick={handleNextClick} className='btn btn-secondary border  border-2 '>Next Question</Button>
                 </Row>
             
             </Container>

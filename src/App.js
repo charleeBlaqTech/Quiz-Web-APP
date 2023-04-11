@@ -13,9 +13,11 @@ const [currentStage, setCurrentStage]= useState(0);
 const [startQuiz, setStartQuiz]= useState(false);
 const [totalScore, setTotalScore]= useState(0);
 const [endQuiz, setEndQuiz]= useState(false);
+const [showStartBtn, setShowStartBtn]= useState(true);
+const [quizEnd, setQuizEnd]= useState(false);
   return (
     <BrowserRouter>
-    <globalContext.Provider value={{endQuiz, setEndQuiz, currentStage,setCurrentStage, questions, setStartQuiz,startQuiz,setTotalScore, totalScore}}>
+    <globalContext.Provider value={{endQuiz,quizEnd, setQuizEnd, setEndQuiz, currentStage,setCurrentStage, questions, setStartQuiz,startQuiz,setTotalScore, totalScore,showStartBtn, setShowStartBtn}}>
         <Routes>
           <Route path='/' element={<Main/>}/>;
         </Routes>

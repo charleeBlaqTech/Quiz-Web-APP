@@ -1,5 +1,5 @@
-import React,{useContext, useState} from 'react';
-import {  useNavigate } from 'react-router-dom';
+import React,{useContext} from 'react';
+// import {  useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Button, Container,Alert } from 'react-bootstrap';
 import Quiz from "./Quiz";
@@ -9,32 +9,20 @@ import { globalContext } from './GlobalContext';
 
 const Main = () => {
     
-    const navigate= useNavigate();
 
-    const [quizEnd, setQuizEnd]= useState(false);
 
-    const {endQuiz, setEndQuiz,startQuiz, setStartQuiz,currentStage,setCurrentStage,questions} = useContext(globalContext);
+    const {endQuiz,quizEnd, setQuizEnd, setEndQuiz,startQuiz, setStartQuiz,showStartBtn, setShowStartBtn} = useContext(globalContext);
 
     const handleStartClick= ()=>{
         setStartQuiz(true);
         setQuizEnd(false);
-        setEndQuiz(false);
-        
+        setEndQuiz(false); 
+        setShowStartBtn(false) 
     }
-    const handleNextClick= ()=>{
-        if(currentStage < Number(questions.length-1) ){
-            setCurrentStage(currentStage + 1);
-        }else{
-            setEndQuiz(true);
-            setStartQuiz(false);
-            setCurrentStage(0);
-        }
-       
-    }
+   
     const handleResultClick= ()=>{
         setQuizEnd(true);
         setEndQuiz(false);
-        navigate('/');
     }
   return (
     <Container className='bg-light mt-auto p-1 min-vw-100 border  border-2 d-flex flex-column align-items-center justify-content-center gap-1'>
@@ -54,9 +42,9 @@ const Main = () => {
             <Quiz/>
         }
         {quizEnd && <QuizResultBoard/>}
+        
         {
-            !startQuiz? <Button onClick={handleStartClick} className='btn btn-success border  border-2 '>Start Quiz</Button>
-            : <Button onClick={handleNextClick} className='btn btn-secondary border  border-2 '>Next Question</Button>
+            showStartBtn && <Button onClick={handleStartClick} className='btn btn-success border  border-2 '>Start Quiz</Button>
         }
 
         {endQuiz && <Button onClick={handleResultClick} className='btn btn-secondary '>Check Score</Button> }

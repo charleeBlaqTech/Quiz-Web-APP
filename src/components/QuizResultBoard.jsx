@@ -1,9 +1,18 @@
 import React, {useContext} from 'react';
 import { globalContext } from './GlobalContext';
-import { Card, Col, Row} from 'react-bootstrap';
+import { Card, Col, Row, Button} from 'react-bootstrap';
+// import { useNavigate } from 'react-router-dom';
 
 const QuizResultBoard = () => {
-    const {totalScore} = useContext(globalContext);
+
+    const {totalScore, setQuizEnd,setStartQuiz,setShowStartBtn,setEndQuiz,setTotalScore} = useContext(globalContext);
+    const handleReStartClick= ()=>{
+        setStartQuiz(true);
+        setEndQuiz(false); 
+        setQuizEnd(false);
+        setShowStartBtn(false);
+        setTotalScore(0);
+    }
   return (
     <Row className='p-1'>
         <Col className='p-1 bg-dark text-dark'xs={12}>
@@ -19,6 +28,7 @@ const QuizResultBoard = () => {
             </Card.Body>
             </Card>
         </Col>
+        <Button onClick={handleReStartClick} className='btn btn-success border  border-2 '>Re-start</Button>
     </Row>
   )
 }
